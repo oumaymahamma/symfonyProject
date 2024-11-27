@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}TRAVELER - Free Travel Website Template{% endblock %}</title>
+    <title>{% block title %}CAMPIFY TN{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -75,11 +75,14 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav ml-auto py-0">
-                    <a href="{{ path('campify') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ path('campify') }}" class="nav-item nav-link ">Home</a>
                     <a href="{{ path('about') }}" class="nav-item nav-link">About</a>
-                    <a href="#" class="nav-item nav-link">Services</a>
-                    <a href="#" class="nav-item nav-link">Tour Shop</a>
+                    <a href="{{ path('articleclient') }}" class="nav-item nav-link"> Tour Shop</a>
+                    <a href="{{ path('service') }}" class="nav-item nav-link">Services</a>
                     <a href="{{ path('contact') }}" class="nav-item nav-link">Contact</a>
+                    <a href="" class="nav-item nav-link active">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
                 </div>
             </div>
         </nav>

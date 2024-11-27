@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>FREE RESPONSIVE HORIZONTAL ADMIN</title>
+    <title>ADMIN DASHBOARD</title>
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
@@ -39,12 +39,12 @@
                 <div class="navbar-collapse collapse">
                     <ul id="menu-top" class="nav navbar-nav navbar-right">
                         <li><a href="{{ path('dashboard') }}" class="menu-top-active">DASHBOARD</a></li>
-                        <li><a href="{{ path('dashboard') }}">ADD PRODUCTS</a></li>
-                        <li><a href="{{ path('dashboard') }}">PRODUCTS LIST</a></li>
+                        <li><a href="{{ path('article') }}">ADD PRODUCTS</a></li>
+                        <li><a href="{{ path('articlelist') }}">PRODUCTS LIST</a></li>
                         <li><a href="{{ path('contactlist') }}">CONTACTS LIST</a></li>
-                        <li><a href="{{ path('dashboard') }}">LOCATIONS LIST</a></li>
-                        <li><a href="{{ path('dashboard') }}">ORDERS LIST</a></li>
-                        <li><a href="{{ path('dashboard') }}">USERS LIST</a></li>
+                        <li><a href="{{ path('locationlist') }}">LOCATIONS LIST</a></li>
+                        <li><a href="{{ path('commandelist') }}">ORDERS LIST</a></li>
+                        <li><a href="{{ path('userlist') }}">USERS LIST</a></li>
                     </ul>
                 </div>
             </div>
@@ -65,31 +65,27 @@
                 <div class="alert alert-info back-widget-set text-center">
                     <i class="fa fa-history fa-5x"></i>
                     <h3>{{ amountPending }}+ <i class="fa fa-dollar"></i></h3>
-                    Amount Pending For Approval
                 </div>
             </div>
 
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="alert alert-success back-widget-set text-center">
                     <i class="fa fa-bars fa-5x"></i>
-                    <h3>{{ tasksPending }} Tasks</h3>
-                    Pending For New Events
+                    <h3>{{ tasksPending }} Orders</h3>
                 </div>
             </div>
 
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="alert alert-warning back-widget-set text-center">
                     <i class="fa fa-recycle fa-5x"></i>
-                    <h3>{{ callsToMake }} Calls</h3>
-                    To Be Made For New Orders
+                    <h3>{{ callsToMake }} Contacts</h3>
                 </div>
             </div>
 
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="alert alert-danger back-widget-set text-center">
-                    <i class="fa fa-briefcase fa-5x"></i>
-                    <h3>{{ issuesToResolve }} Issues</h3>
-                    That Should Be Resolved Now
+                    <i class="fa fa-user fa-5x"></i>
+                    <h3>{{ issuesToResolve }} Users</h3>
                 </div>
             </div>
         </div>
@@ -101,9 +97,7 @@
                         <div class="item active">
                             <img src="{{ asset('assets/img/1.jpg') }}" alt="" />
                         </div>
-                        <div class="item">
-                            <img src="{{ asset('assets/img/2.jpg') }}" alt="" />
-                        </div>
+
                         <div class="item">
                             <img src="{{ asset('assets/img/3.jpg') }}" alt="" />
                         </div>
@@ -128,11 +122,13 @@
                     <hr />
                     <i class="fa fa-warning fa-4x"></i>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Please regularly check the camping gear stock and
+                        process orders promptly to ensure timely delivery.
+                        If you have any questions, our support team is available.
+
                     </p>
                     <hr />
-                    <a href="#" class="btn btn-info">Read Full Details</a>
+                    <a href="#" class="btn btn-info">Let's start</a>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'contact')]
     public function contact(Request $request, EntityManagerInterface $em): Response
     {
-        // Créer une nouvelle instance de Contact
+        // Créer une nouvelle instance de Contact-----------------------------------------------------------------------
         $contact = new Contact();
 
         // Créer le formulaire basé sur le formulaire ContactType

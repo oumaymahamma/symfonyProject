@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}CAMPIFY TN{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <style>
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            display: flex;
+            background-color: #fff;
+            border-radius: 8px;
+            width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between; /* Ajout pour espacer le titre et le bouton */
+            align-items: center; /* Centre verticalement le titre et le bouton */
+            padding: 10px;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 1.3rem; /* Taille de la police pour le titre */
+            color: #333; /* Couleur du texte */
+            margin: 0; /* Pour éviter tout espace par défaut */
+            margin-left: 25px; /* Décale le titre vers la droite */
+        }
+
+        .close-btn {
+            font-size: 35px;
+            color: #333;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            display: flex;
+            width: 100%;
+        }
+
+        .modal-body img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 15px;
+        }
+
+        .modal-details {
+            flex-grow: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-details h4 {
+            margin-top: 0;
+        }
+
+        .modal-details p {
+            margin: 5px 0;
+        }
+
+        .modal-details .date {
+            margin-top: auto;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .modal-buttons button {
+            width: 100px;
+            height: 35px; /* Ajustez la taille du bouton comme souhaité */
+            font-size: 0.8rem; /* Taille de la police plus petite */
+        }
+    </style>
+</head>
+
+
+<body>
+<!-- Topbar Start -->
+<div class="container-fluid bg-light pt-3 d-none d-lg-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <p><i class="fa fa-envelope mr-2"></i>Campifytn@gmail.com</p>
+                    <p class="text-body px-3">|</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>+216 58 892 757</p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-primary px-3" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-primary px-3" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-primary px-3" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-primary px-3" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-primary pl-3" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+<!-- Navbar Start -->
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="{{ path('campify') }}" class="navbar-brand">
+                <h1 class="m-0 text-primary"><span class="text-dark">CAMPIFY</span>TN</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="{{ path('campify') }}" class="nav-item nav-link ">Home</a>
+                    <a href="{{ path('about') }}" class="nav-item nav-link">About</a>
+                    <a href="{{ path('articleclient') }}" class="nav-item nav-link"> Tour Shop</a>
+                    <a href="{{ path('service') }}" class="nav-item nav-link">Services</a>
+                    <a href="{{ path('contact') }}" class="nav-item nav-link">Contact</a>
+                    <a href="" class="nav-item nav-link active">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+
+
+
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">Shop</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Shop</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+<!-- Booking Start -->
+<div class="container-fluid booking mt-5 pb-5">
+    <div class="container pb-5">
+        <form method="GET" action="{{ path('articleclient') }}">
+            <div class="bg-light shadow" style="padding: 30px;">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input
+                                        type="text"
+                                        class="form-control p-4"
+                                        name="search"
+                                        value="{{ app.request.get('search') }}"
+                                        placeholder="Search" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block" type="submit" style="height: 47px;">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Booking End -->
+<!-- Modal -->
+<div class="modal" id="articleModal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h6 class="modal-title">    Product Details</h6>
+
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <img id="modalArticleImage" alt="Article Image">
+            <div class="modal-details">
+                <h4 id="modalArticleName"></h4>
+                <h5 id="modalArticlePrice"></h5>
+                <p id="modalArticleDescription"></p>
+                <br>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary btn-sm" type="submit">Location</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Add to cart</button>
+                </div>
+                <!--   <p class="date" id="modalArticleDate"></p> -->
+            </div>
+        </div>
+    </div>
+</div><!-- Packages Start -->
+<div class="container-fluid py-15">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Shop</h6>
+            <h1>Perfect Tour Shop</h1>
+        </div>
+        <div class="row">
+            {% if articles|length == 0 %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">No articles found for your search.</p>
+                </div>
+            {% else %}
+                {% for article in articles %}
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="package-item bg-white mb-2">
+                            <!-- Photo de l'article -->
+                            <img
+                                    class="img-fluid"
+                                    src="{{ asset('uploads/photos/' ~ article.photo) }}"
+                                    alt="{{ article.name }}"
+                                    style="text-align: center"
+                                   >
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <!-- Pays (Statique : Tunisia) -->
+                                    <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Tunisia</small>
+                                </div>
+                                <!-- Nom de l'article -->
+                                <a class="h5 text-decoration-none"href="javascript:void(0);" onclick="openModal('{{ article.name }}', '{{ article.prix | number_format(2, '.', ',') }}', '{{ article.description }}', '{{ article.photo }}', )">{{ article.name }}</a>
+                                <div class="border-top mt-4 pt-4">
+
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Évaluation (Statique : 4.5 étoiles) -->
+                                        <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5</h6>
+                                        <!-- Prix de l'article -->
+                                        <h5 class="m-0">{{ article.prix | number_format(2, '.', ',') }} TND</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Packages End -->
+
+
+
+
+<!-- Content -->
+{% block body %}{% endblock %}
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+    <div class="row pt-5">
+        <div class="col-lg-3 col-md-6 mb-5">
+            <a href="" class="navbar-brand">
+                <h1 class="text-primary"><span class="text-white">CAMPIFY</span>TN</h1>
+            </a>
+            <p>is your go-to destination for all camping equipment in Tunisia.</p>
+            <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
+            <div class="d-flex justify-content-start">
+                <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
+            <div class="d-flex flex-column justify-content-start">
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tour Shop</a>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Useful Links</h5>
+            <div class="d-flex flex-column justify-content-start">
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Tour Shop</a>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Get In Touch</h5>
+            <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, Tunisia</p>
+            <p><i class="fa fa-phone-alt mr-2"></i>+216 58 892 757</p>
+            <p><i class="fa fa-envelope mr-2"></i>Campifytn@gmail.com</p>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary btn-lg back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js') }}"></script>
+<script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('lib/tempusdominus/js/moment.min.js') }}"></script>
+<script src="{{ asset('lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+<script src="{{ asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- JavaScript for Modal -->
+<script>
+    function openModal(name, price, description, photo) {
+        document.getElementById('modalArticleName').textContent = name;
+        document.getElementById('modalArticlePrice').textContent = price + ' TND';
+        document.getElementById('modalArticleDescription').textContent = description;
+        document.getElementById('modalArticleImage').src = '{{ asset('uploads/photos/') }}/' + photo;
+
+        document.getElementById('articleModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('articleModal').style.display = 'none';
+    }
+</script><script src="{{ asset('js/contact.js') }}"></script>
+
+</body>
+
+</html>
