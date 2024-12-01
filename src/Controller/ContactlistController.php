@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Contact;
@@ -10,48 +11,54 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactlistController extends AbstractController
 {
-#[Route('/contactlist', name: 'contactlist')]
-public function index(EntityManagerInterface $em): Response
-{
-$contacts = $em->getRepository(Contact::class)->findAll();
-return $this->render('admin/contactlist.html.twig', [
-'contacts' => $contacts,
-]);
-}
+    #[Route('/contactlist', name: 'contactlist')]
+    public function index(EntityManagerInterface $em): Response
+    {
+        $contacts = $em->getRepository(Contact::class)->findAll();
 
-#[Route('/delete_contacts', name: 'delete_contacts', methods: ['POST'])]
-public function deleteSelectedContacts(Request $request, EntityManagerInterface $em): Response
-{
-$selectedContacts = $request->request->get('selected_contacts');
+        return $this->render('admin/contactlist.html.twig', [
+            'contacts' => $contacts,
+        ]);
+    }
 
-if (is_array($selectedContacts) && !empty($selectedContacts)) {
-// Filtrer les valeurs pour s'assurer qu'elles sont scalaires
-$selectedContacts = array_filter($selectedContacts, function ($value) {
-return is_scalar($value);
-});
+    #[Route('/delete_contacts', name: 'delete_contacts', methods: ['POST'])]
+    public function deleteSelectedContacts(Request $request, EntityManagerInterface $em): Response
+    {
+        // Récupérer les valeurs transmises pour 'selected_contacts' comme tableau
+        $selectedContacts = $request->request->all('selected_contacts');
 
-// Convertir en entiers
-$selectedContacts = array_map('intval', $selectedContacts);
+        // Vérifier que $selectedContacts est bien un tableau
+        if (!is_array($selectedContacts)) {
+            $this->addFlash('warning', 'Invalid data received.');
+            return $this->redirectToRoute('contactlist');
+        }
 
-// Vérifier si le tableau est non vide après le filtrage
-if (!empty($selectedContacts)) {
-// Récupérer les contacts à supprimer
-$contactsToDelete = $em->getRepository(Contact::class)->findBy(['id' => $selectedContacts]);
+        // Filtrer pour s'assurer que toutes les valeurs sont des entiers valides
+        $filteredContacts = array_filter($selectedContacts, function ($value) {
+            return is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT);
+        });
 
-foreach ($contactsToDelete as $contact) {
-$em->remove($contact);
-}
+        if (!empty($filteredContacts)) {
+            // Récupérer les contacts correspondants à ces IDs
+            $contactsToDelete = $em->getRepository(Contact::class)->findBy(['id' => $filteredContacts]);
 
-$em->flush();
+            foreach ($contactsToDelete as $contact) {
+                $em->remove($contact);
+            }
 
-$this->addFlash('success', 'Contacts sélectionnés supprimés avec succès.');
-} else {
-$this->addFlash('warning', 'Aucun contact valide sélectionné.');
-}
-} else {
-$this->addFlash('warning', 'Aucun contact sélectionné pour la suppression.');
-}
+            $em->flush();
 
-return $this->redirectToRoute('contactlist');
-}
+            $this->addFlash('success', 'Selected contacts successfully deleted.');
+
+
+
+
+
+        } else {
+            $this->addFlash('warning', 'No valid contact selected.');
+        }
+
+        return $this->redirectToRoute('contactlist');
+    }
+
 }

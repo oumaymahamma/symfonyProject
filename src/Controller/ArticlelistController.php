@@ -35,7 +35,7 @@ $em->remove($article);
 $em->flush();
 
 // Add a flash message to confirm deletion
-$this->addFlash('success', 'Article deleted successfully!');
+$this->addFlash('success', 'Product deleted successfully!');
 } else {
 $this->addFlash('danger', 'Article not found!');
 }

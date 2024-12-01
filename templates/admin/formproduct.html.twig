@@ -55,20 +55,18 @@
 </section>
 <!-- MENU SECTION END -->
 <div class="content-wrapper">
+    {% block body %}
+
     <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">FORM PRODUCTS</h4>
 
-                {# Affichage des messages flash en haut du formulaire #}
-                {% for label, messages in app.flashes %}
-                    <div class="alert alert-{{ label == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
-                        {{ messages|join(', ') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
                 {% endfor %}
+
+
 
             </div>
         </div>
@@ -78,6 +76,7 @@
                     <div class="panel-heading">
                         Add Products
                     </div>
+
                     <div class="panel-body">
                         {{ form_start(form) }}
                         <div class="form-group">
@@ -112,6 +111,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
+
 </div>
 <!-- CONTENT-WRAPPER SECTION END -->
 <section class="footer-section">

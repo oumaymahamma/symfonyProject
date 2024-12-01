@@ -53,9 +53,12 @@
 
 <div class="content-wrapper">
     <div class="container">
-        <h4>Contacts List</h4>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">{{ message }}</div>
+        <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">CONTACTS LIST</h4>
+            </div>
+        </div>        {% for message in app.flashes('success') %}
+            <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
         {% for message in app.flashes('warning') %}
             <div class="alert alert-warning">{{ message }}</div>
@@ -88,18 +91,7 @@
             </div>
             <button type="submit" class="btn btn-danger pull-right">Delete Selected</button>
         </form>
-    </div><section class="footer-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                &copy; 2024 compify.com | <a href="http://www.binarytheme.com/" target="_blank">Designed by : compify.com</a>
-            </div>
-        </div>
     </div>
-</section>
-
-<script src="{{ asset('assets/js/jquery-1.10.2.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-<script src="{{ asset('assets/js/custom.js') }}"></script>
+</div>
 </body>
 </html>
