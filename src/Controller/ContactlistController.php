@@ -48,14 +48,14 @@ class ContactlistController extends AbstractController
 
             $em->flush();
 
-            $this->addFlash('success', 'Selected contacts successfully deleted.');
+            $this->addFlash('success', 'Selected contacts successfully deleted !');
 
 
 
 
 
         } else {
-            $this->addFlash('warning', 'No valid contact selected.');
+            $this->addFlash('warning', 'No valid contact selected !');
         }
 
         return $this->redirectToRoute('contactlist');

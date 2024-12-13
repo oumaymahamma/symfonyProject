@@ -24,17 +24,15 @@ class AuthController extends AbstractController
             $email = $request->request->get('email');
             $password = $request->request->get('password');
 
-            // Check if the email and password match the hardcoded values
+
             if ($email === self::USER_EMAIL && $password === self::USER_PASSWORD) {
-                // Redirect to the dashboard on successful login
+
                 return $this->redirectToRoute('dashboard');
             }
 
-            // Add an error message if the login fails
             $this->addFlash('error', 'Invalid email or password.');
         }
 
-        // Render the login page
         return $this->render('admin/login.html.twig');
     }
 

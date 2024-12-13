@@ -34,7 +34,7 @@ class ArticleController extends AbstractController
                     $article->setPhoto($photoName);
                 } catch (\Exception $e) {
                     // Ajoute un message flash en cas d'erreur
-                    $this->addFlash('danger', 'Error uploading the photo. Please try again.');
+                    $this->addFlash('danger', 'Error uploading the photo. Please try again !');
                     return $this->redirectToRoute('article');
                 }
             }
@@ -44,7 +44,7 @@ class ArticleController extends AbstractController
             $em->flush();
 
             // Ajout d'un message de succès
-            $this->addFlash('success', 'Product added successfully!');
+            $this->addFlash('success', 'Product added successfully !');
             return $this->redirectToRoute('article');
         }
 
